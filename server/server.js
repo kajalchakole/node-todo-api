@@ -82,7 +82,7 @@ app.patch('/todos/:id', (req, res) => {
         body.completedAt = new Date().getTime();
     }else {
         body.completed = false;
-        body.completedAt = false;
+        body.completedAt = null;
     }
 
     ToDo.findByIdAndUpdate(id, { $set: body}, {new: true}).then((todo) => {
@@ -91,7 +91,7 @@ app.patch('/todos/:id', (req, res) => {
         }
 
         res.send({todo});
-        
+
     }).catch((e) => {
         res.status(400).send();
     })
